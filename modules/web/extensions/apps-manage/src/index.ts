@@ -13,9 +13,19 @@ const menu = {
   authAction: 'manage',
 };
 
+const globalApps = {
+  parent: 'topbar',
+  name: 'apps',
+  title: '江苏交控应用商店',
+  icon: 'cluster',
+  order: 0,
+  desc: '边缘计算',
+  skipAuth: true,
+};
+
 const extensionConfig = {
   routes,
-  menus: [menu],
+  menus: [menu, globalApps],
   locales,
 };
 
