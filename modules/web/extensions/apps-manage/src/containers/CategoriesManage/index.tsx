@@ -11,9 +11,11 @@ import {
   AppDetail,
   useBatchActions,
   DeleteConfirmModal,
-  getAnnotationsAliasName,
+  getDisplayName,
   StatusIndicator,
   transferAppStatus,
+  getAnnotationsDescription,
+  getWorkspacesAliasName,
 } from '@ks-console/shared';
 import {
   useCategoryList,
@@ -46,8 +48,8 @@ function CategoriesManage(): JSX.Element {
       searchable: true,
       render: (name, app) => (
         <TableItemField
-          label={getAnnotationsAliasName(app)}
-          value={<Link to={`/apps-manage/store/${app.metadata.name}`}>{name}</Link>}
+          label={getAnnotationsDescription(app) || '-'}
+          value={<Link to={`/apps-manage/store/${app.metadata.name}`}>{getDisplayName(app)}</Link>}
           // @ts-ignore TODO
           avatar={<Image iconSize={40} src={app.spec.icon} iconLetter={name} />}
         />
@@ -69,7 +71,7 @@ function CategoriesManage(): JSX.Element {
       canHide: true,
       width: '25%',
       render: (_, app) => {
-        return get(app, 'metadata.labels["kubesphere.io/workspace"]', '-');
+        return getWorkspacesAliasName(get(app, 'metadata.labels["kubesphere.io/workspace"]', '-'));
       },
     },
     {
@@ -78,7 +80,11 @@ function CategoriesManage(): JSX.Element {
       canHide: true,
       width: '25%',
       render: (_, app) => {
-        return get(app, 'metadata.annotations["application.kubesphere.io/latest-app-version"]', '-');
+        return get(
+          app,
+          'metadata.annotations["application.kubesphere.io/latest-app-version"]',
+          '-',
+        );
       },
     },
   ];

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Field } from '@kubed/components';
 
-import { showOutSiteLink } from '@ks-console/shared';
+import { showOutSiteLink, getWorkspacesAliasName } from '@ks-console/shared';
 
 type Props = {
   name: string;
@@ -10,7 +10,7 @@ type Props = {
   versionName?: string;
 };
 
-function BaseInfo({ name, home, versionName, isv }: Props): JSX.Element {
+function BaseInfo({ name, home, versionName, isv = '' }: Props): JSX.Element {
   return (
     <>
       <div style={{ marginRight: '40px', minWidth: '200px' }}>
@@ -36,7 +36,7 @@ function BaseInfo({ name, home, versionName, isv }: Props): JSX.Element {
       </div>
       <div>
         <Field className="mb8" value={versionName || '-'} label={t('VERSION')} />
-        <Field className="mb8" value={isv || '-'} label={t('WORKSPACE')} />
+        <Field className="mb8" value={getWorkspacesAliasName(isv) || '-'} label={t('WORKSPACE')} />
       </div>
     </>
   );
