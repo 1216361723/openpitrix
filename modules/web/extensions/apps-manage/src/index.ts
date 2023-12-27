@@ -15,7 +15,7 @@ const menu = {
 
 const globalApps = {
   parent: 'topbar',
-  name: 'apps',
+  name: 'jsjk-apps',
   title: '江苏交控应用商店',
   icon: 'cluster',
   order: 0,
