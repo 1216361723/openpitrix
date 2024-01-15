@@ -11,10 +11,9 @@ import {
   AppDetail,
   useBatchActions,
   DeleteConfirmModal,
-  getDisplayName,
   StatusIndicator,
   transferAppStatus,
-  getAnnotationsDescription,
+  getAnnotationsAliasName,
   getWorkspacesAliasName,
 } from '@ks-console/shared';
 import {
@@ -48,10 +47,17 @@ function CategoriesManage(): JSX.Element {
       searchable: true,
       render: (name, app) => (
         <TableItemField
-          label={getAnnotationsDescription(app) || '-'}
-          value={<Link to={`/apps-manage/store/${app.metadata.name}`}>{getDisplayName(app)}</Link>}
-          // @ts-ignore TODO
-          avatar={<Image iconSize={40} src={app.spec.icon} iconLetter={name} />}
+          label={getAnnotationsAliasName(app)}
+          value={<Link to={`/apps-manage/store/${app.metadata.name}`}>{name}</Link>}
+          avatar={
+            <Image
+              iconSize={40}
+              src={app.spec.icon}
+              isBase64Str={!!app.spec.icon}
+              // @ts-ignore TODO
+              iconLetter={name}
+            />
+          }
         />
       ),
     },
