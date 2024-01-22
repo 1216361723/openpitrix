@@ -42,7 +42,7 @@ export default [
     children: [
       {
         index: true,
-        element: <Navigate to="store" replace />,
+        element: <Navigate to="reviews" replace />,
       },
       {
         path: 'store',
