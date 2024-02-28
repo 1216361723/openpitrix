@@ -15,7 +15,9 @@
     "build:dll": "ksc build:dll",
     "build:prod": "ksc build:prod",
     "build:ext": "ksc build:ext",
-    "create:ext": "ksc create:ext"
+    "build:ext-app": "ksc build:ext apps-manage",
+    "build:ext-edge": "ksc build:ext edgewize",
+    "create:ext": "ksc create:ext "
   },
   "browserslist": [
     "> 1%",
@@ -59,7 +61,6 @@
     "@tanstack/react-query": "^4.13.5",
     "@types/lodash": "^4.14.176",
     "@types/qs": "^6.9.7",
-    "@types/react": "^17.0.2",
     "@types/react-dom": "^17.0.2",
     "@types/react-table": "^7.7.8",
     "@types/styled-components": "5.1.24",
@@ -142,15 +143,14 @@
     "yargs": "^17.0.1"
   },
   "resolutions": {
-    "@types/react": "^17.0.2"
   },
   "dependencies": {
-    "@ks-console/appstore": "^0.0.1",
-    "@ks-console/bootstrap": "^0.0.1",
-    "@ks-console/console": "^0.0.1",
-    "@ks-console/core": "^0.0.1",
-    "@ks-console/server": "^0.0.1",
-    "@ks-console/shared": "^0.0.1",
+    "@ks-console/appstore": "file:.yalc/@ks-console/appstore",
+    "@ks-console/bootstrap": "file:.yalc/@ks-console/bootstrap",
+    "@ks-console/console": "file:.yalc/@ks-console/console",
+    "@ks-console/core": "file:.yalc/@ks-console/core",
+    "@ks-console/server": "file:.yalc/@ks-console/server",
+    "@ks-console/shared": "file:.yalc/@ks-console/shared",
     "@kubed/charts": "^0.0.14",
     "@kubed/code-editor": "^0.0.20",
     "@kubed/components": "^0.0.81",
@@ -158,6 +158,7 @@
     "@kubed/hooks": "^0.0.14",
     "@kubed/icons": "^0.0.13",
     "@kubed/log-viewer": "^0.0.14",
-    "@kubed/stook": "^0.0.4"
+    "@kubed/stook": "^0.0.4",
+    "react-syntax-highlighter": "^15.5.0"
   }
 }
