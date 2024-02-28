@@ -1,18 +1,30 @@
 import React from 'react';
-import Layout from '../components/Base/ListLayout';
-import BindLabels from '../containers/BindLabels';
+import { WorkspaceLayout, WorkspaceListLayout } from '@ks-console/shared';
 
-const PATH = '/workspaces/:workspace/edgesetting';
+import BindLabels from '../containers/BindLabels';
+import StoreManage from '../containers/StoreManage';
+import AppDetails from '../containers/AppDetail/routes';
 
 export default [
   {
-    path: PATH,
-    element: <Layout />,
+    path: '/',
+    element: <WorkspaceLayout />,
     children: [
       {
-        index: true,
-        element: <BindLabels />,
+        path: 'workspaces/:workspace',
+        element: <WorkspaceListLayout />,
+        children: [
+          {
+            path: 'edge-templates',
+            element: <StoreManage />,
+          },
+          {
+            path: 'edge-setting',
+            element: <BindLabels />,
+          },
+        ],
       },
+      ...AppDetails('/workspaces/:workspace/edge-templates'),
     ],
   },
 ];
