@@ -74,13 +74,12 @@ export function StoreManage(): JSX.Element {
     },
   });
   function handleOpen() {
-    console.log(123, cluster);
     open({
       action: 'app.template.create.v2',
       v3Module: 'edgeStore',
       module: 'apptemplates',
       workspace,
-      cluster,
+      cluster: 'host',
       onlyDockerHub: false,
       v3StoreParams: {
         module: 'edgeappsets',

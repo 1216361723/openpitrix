@@ -28,29 +28,20 @@ const workspaceAppManageMenu = {
       icon: 'appcenter',
       order: 0,
       authKey: 'app-templates',
+      skipAuth: true,
     },
     {
       name: 'edge-setting',
-      title: 'EDGEWIZE_LABELS_SETTING',
+      title: 'EDGEWIZE_LABELS',
       icon: 'appcenter',
       skipAuth: true,
     },
   ],
 };
 
-const projectAppManageMenu = {
-  parent: 'project.app-workloads',
-  name: 'edge-management',
-  title: 'EDGEWIZE_MANAGEMENT',
-  icon: 'appcenter',
-  order: 1,
-  desc: 'EDGEWIZE_PROJECT_SETTING',
-  skipAuth: true,
-};
-
 const extensionConfig = {
   routes,
-  menus: [menu, workspaceAppManageMenu, projectAppManageMenu],
+  menus: [menu, workspaceAppManageMenu],
   locales,
   isCheckLicense: true,
 };

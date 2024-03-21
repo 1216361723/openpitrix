@@ -1,11 +1,17 @@
 {
   "EDGEWIZE_COMPUTING": "边缘计算",
-  "EDGEWIZE_LABELS": "边缘标签",
+  "EDGEWIZE_LABELS": "边缘业务管理",
+  "EDGEWIZE_CLUSET": "边缘集群",
+  "EDGEWIZE_SELECT_CLUSTER_PLACEHOLDER": "请选择边缘集群。",
+  "EDGEWIZE_CLUSTER_INFO": "边缘集群信息",
+  "EDGEWIZE_CLUSTER_SETTING": "设置边缘业务",
+  "EDGEWIZE_TEMPLATE": "边缘模板管理",
   "EDGEWIZE_WORKSPACE": "边缘空间",
-  "EDGEWIZE_LABELS_DESC": "绑定边缘标签后，开发者可以在边缘空间和边缘项目下开发边缘应用",
-  "NO_EDGEWIZE_CLUSTER_AVAILABLE": "没有可用的边缘集群",
+  "EDGEWIZE_LABELS_DESC": "边缘业务开启以后，企业空间只可能有一个边缘集群，其他集群会被移除。",
+  "NO_EDGEWIZE_CLUSTER_AVAILABLE": "没有可用的边缘集群。",
   "SETTING_OK": "设置成功",
-  "EDGEWIZE_SETTING": "边缘设置",
+  "EDGEWIZE_MANAGEMENT": "边缘管理",
   "EDGEWIZE_LABELS_SETTING": "设置边缘标签",
-  "EDGEWIZE_PROJECT_SETTING": "边缘项目设置"
+  "EDGEWIZE_PROJECT_SETTING": "边缘项目设置",
+  "EDGEWIZE_NEED_ADD_LABEL": "一旦确定是边缘空间，无法转变为普通企业空间，边缘集群空间属于企业空间。且边缘集群空间里面允许用户创建边缘模板应用。 其他和企业空间无任何差异。"
 }

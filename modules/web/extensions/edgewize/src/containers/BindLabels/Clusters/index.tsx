@@ -2,9 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { isEmpty } from 'lodash';
 import { Cluster } from '@kubed/icons';
-import { Card, Switch, notify, Loading } from '@kubed/components';
-import { FormattedCluster, isMultiCluster, workspaceStore, clusterStore } from '@ks-console/shared';
+import { Card, notify, Loading, Button } from '@kubed/components';
+import {
+  FormattedCluster,
+  isMultiCluster,
+  workspaceStore,
+  clusterStore,
+  Panel,
+} from '@ks-console/shared';
 import ClusterCard from './Card';
+import BindClusterModal from '../BindCluster';
 import { editWorkspaceLabels } from '../../../stores';
 import { EmptyWrapper } from './styles';
 
@@ -15,7 +22,10 @@ function Clusters() {
 
   const { data: clusters, isLoading } = useQueryWorkspaceClusters(workspace);
 
-  const edgeClusters = clusters?.filter(item => item.provider === 'EdgeWize');
+  const edgeClusters = clusters?.filter(
+    (item: { provider: string }) => item.provider === 'EdgeWize',
+  );
+  const [visible, setVisible] = useState(false);
   const [isEdgewize, setIsEdgewize] = useState(false);
   const { data: workspaces } = useFetchWorkspaceQuery({
     workspace,
@@ -33,23 +43,10 @@ function Clusters() {
     }
   }, [workspaces]);
 
-  function handleModeChange(val: boolean) {
-    setIsEdgewize(val);
-    let label: string[] = [];
-    if (val && edgeClusters) {
-      label = edgeClusters?.map((item: { name: string }) => item.name);
-    }
-    const params = [
-      {
-        op: 'add',
-        path: '/metadata/labels',
-        value: {
-          'cluster-role.kubesphere.io/edge': label.join(','),
-        },
-      },
-    ];
-    editWorkspaceLabels(workspace as string, params).then(() => {
+  function handleModeChange(val: { cluster: string }) {
+    editWorkspaceLabels(workspace as string, val.cluster).then(() => {
       notify.success(t('SETTING_OK'));
+      setVisible(false);
     });
   }
   if (!isMultiCluster()) {
@@ -73,17 +70,22 @@ function Clusters() {
 
   return (
     <>
-      <div>
-        <Switch
-          label={t('EDGEWIZE_WORKSPACE')}
-          variant="button"
-          onChange={handleModeChange}
-          checked={isEdgewize}
-        />
-      </div>
-      {edgeClusters?.map((cluster: FormattedCluster) => (
-        <ClusterCard key={cluster.name} cluster={cluster} />
-      ))}
+      <Panel loading={isLoading} title={t('EDGEWIZE_CLUSTER_INFO')}>
+        <div>
+          <Button disabled={isEdgewize} color="secondary" onClick={() => setVisible(true)}>
+            {t('EDGEWIZE_CLUSTER_SETTING')}
+          </Button>
+        </div>
+        {edgeClusters?.map((cluster: FormattedCluster) => (
+          <ClusterCard key={cluster.name} cluster={cluster} />
+        ))}
+      </Panel>
+      <BindClusterModal
+        onOk={handleModeChange}
+        onCancel={() => setVisible(false)}
+        visible={visible}
+        data={edgeClusters}
+      />
     </>
   );
 }

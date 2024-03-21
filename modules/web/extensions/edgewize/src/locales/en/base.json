@@ -1,6 +1,7 @@
 {
   "EDGEWIZE_COMPUTING": "Edge Computing",
-  "EDGEWIZE_LABELS": "Edge Labels",
+  "EDGEWIZE_LABELS": "Edge Business Management",
+  "EDGEWIZE_TEMPLATE": "Edge template management",
   "EDGEWIZE_WORKSPACE": "Edge Space",
   "EDGEWIZE_LABELS_DESC": "After binding edge tags, developers can develop edge applications in edge space and edge projects",
   "NO_EDGEWIZE_CLUSTER_AVAILABLE": "No available edge clusters",

@@ -1,8 +1,6 @@
 import { request } from '@ks-console/shared';
 
-const defaultUrl = '/kapis/tenant.kubesphere.io/v1beta1/workspacetemplates';
-
-export function editWorkspaceLabels(workspace: string, params: Record<string, any>) {
-  const url = `${defaultUrl}/${workspace}`;
-  return request.patch(url, params);
+export function editWorkspaceLabels(workspace: string, cluster: string) {
+  const url = `/kapis/infra.edgewize.io/v1alpha1/edgeworkspaces/${workspace}/clusters/${cluster}`;
+  return request.post(url);
 }
