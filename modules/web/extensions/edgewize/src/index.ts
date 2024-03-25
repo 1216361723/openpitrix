@@ -10,7 +10,7 @@ const menu = {
   desc: 'EDGEWIZE_COMPUTING',
   ksModule: 'edgewize',
   authKey: 'global-edge-cluster-management',
-  authAction: 'manage',
+  authAction: 'view',
 };
 
 const workspaceAppManageMenu = {

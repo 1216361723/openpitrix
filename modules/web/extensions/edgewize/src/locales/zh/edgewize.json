@@ -1,0 +1,10 @@
+{
+  "NODE_ADMINISTRATION_PL": "节点管理",
+  "NODE_ACCESS_PL": "节点接入",
+  "EDGE_APPLICATION_WORKLOAD_PL": "边缘应用负载",
+  "ALERT_RULE_GROUP_PL": "告警规则组",
+  "EDGE_MONITORING_AND_ALERTING": "边缘资源告警",
+  "EDGE_CLUSTER_SETTINGS_PL": "边缘集群设置",
+  "EDGE_CLUSTER_ROLE": "边缘集群角色",
+  "EDGE_CLUSTER_MEMBER": "边缘集群成员"
+}

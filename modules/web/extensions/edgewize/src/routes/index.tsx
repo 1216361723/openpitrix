@@ -1,11 +1,12 @@
 import React from 'react';
 import { WorkspaceLayout, WorkspaceListLayout } from '@ks-console/shared';
-
+import edgewizeRoute from '../containers/edgewize/routes';
 import BindLabels from '../containers/BindLabels';
 import StoreManage from '../containers/StoreManage';
 import AppDetails from '../containers/AppDetail/routes';
 
 export default [
+  ...edgewizeRoute,
   {
     path: '/',
     element: <WorkspaceLayout />,
