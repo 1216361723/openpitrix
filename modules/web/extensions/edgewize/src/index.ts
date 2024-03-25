@@ -8,8 +8,8 @@ const menu = {
   icon: 'cluster',
   order: 0,
   desc: 'EDGEWIZE_COMPUTING',
-  ksModule: 'openpitrix',
-  authKey: 'manage-app',
+  ksModule: 'edgewize',
+  authKey: 'global-edge-cluster-management',
   authAction: 'manage',
 };
 
@@ -20,21 +20,19 @@ const workspaceAppManageMenu = {
   icon: 'appcenter',
   order: 3,
   desc: 'EDGEWIZE_PROJECT_SETTING',
-  skipAuth: true,
   children: [
     {
       name: 'edge-templates',
       title: 'EDGEWIZE_TEMPLATE',
       icon: 'appcenter',
       order: 0,
-      authKey: 'app-templates',
-      skipAuth: true,
+      authKey: 'edge-app-templates',
     },
     {
       name: 'edge-setting',
       title: 'EDGEWIZE_LABELS',
       icon: 'appcenter',
-      skipAuth: true,
+      authKey: 'edge-workspaces',
     },
   ],
 };
