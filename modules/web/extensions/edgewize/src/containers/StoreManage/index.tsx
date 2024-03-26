@@ -18,11 +18,12 @@ import {
   getLocalTime,
   getAuthKey,
   transferAppStatus,
-  getAnnotationsAliasName,
   getAnnotationsDescription,
   getDisplayName,
   getUserAliasName,
   useV3action,
+  getDetailMetadataCategory,
+  getCategoryDisplayName,
 } from '@ks-console/shared';
 
 import type { AppDetail, Column } from '@ks-console/shared';
@@ -54,21 +55,20 @@ export const TableItemField = styled(Field)`
 
 export function StoreManage(): JSX.Element {
   const params = useParams();
-  const { workspace } = params;
+  const { workspace = '' } = params;
   const { open, render: RenderTemplate } = useV3action();
 
-  const tableRef = useRef();
+  const tableRef = useRef<any>();
   const { data: workspaces } = useFetchWorkspaceQuery({ workspace });
   const cluster = workspaces?.metadata?.labels?.['cluster-role.kubesphere.io/edge'];
 
   const [selectData, setSelectedApp] = useStore<AppDetail>('selectedApp');
   const { data: categories } = useCategoryList({
     options: {
-      format: item => {
-        const name = getAnnotationsAliasName(item) || item.metadata.name;
+      format: (item: any) => {
         return {
           value: item?.metadata?.name,
-          label: name === 'kubesphere-app-uncategorized' ? t('APP_CATE_UNCATEGORIZED') : name,
+          label: getDetailMetadataCategory(item),
         };
       },
     },
@@ -79,7 +79,7 @@ export function StoreManage(): JSX.Element {
       v3Module: 'edgeStore',
       module: 'apptemplates',
       workspace,
-      cluster: 'host',
+      cluster,
       onlyDockerHub: false,
       v3StoreParams: {
         module: 'edgeappsets',
@@ -190,7 +190,6 @@ export function StoreManage(): JSX.Element {
       field: 'maintainers',
       canHide: true,
       width: '10%',
-      // @ts-ignore TODO
       render: (_, record) => {
         const user =
           record?.metadata.annotations?.['application.kubesphere.io/app-maintainers'] || '-';
@@ -202,7 +201,6 @@ export function StoreManage(): JSX.Element {
       field: 'metadata.resourceVersion',
       canHide: true,
       width: '10%',
-      // @ts-ignore TODO
       render: (_, record) =>
         record?.metadata.annotations?.['application.kubesphere.io/latest-app-version'] || '-',
     },
@@ -211,7 +209,6 @@ export function StoreManage(): JSX.Element {
       field: 'category_set',
       canHide: true,
       width: '10%',
-      // @ts-ignore TODO
       render: (_, record) => {
         const label = record?.metadata?.labels?.['application.kubesphere.io/app-category-name'];
         const aliasName = (categories as unknown as { label: string; value: string }[])?.find(
@@ -220,13 +217,7 @@ export function StoreManage(): JSX.Element {
         if (aliasName) {
           return aliasName.label;
         }
-
-        if (label === 'kubesphere-app-uncategorized') {
-          return t('APP_CATE_UNCATEGORIZED');
-        }
-        return t(`APP_CATE_${label?.toUpperCase().replace(/[^A-Z]+/g, '_')}`, {
-          defaultValue: label || '-',
-        });
+        return getCategoryDisplayName(label);
       },
     },
     {
@@ -286,7 +277,7 @@ export function StoreManage(): JSX.Element {
         <AppDataTable
           filter
           tableRef={tableRef}
-          // @ts-ignore TODO
+          // @ts-ignore
           columns={columns}
           workspace={workspace}
           toolbarRight={tableActions()}
