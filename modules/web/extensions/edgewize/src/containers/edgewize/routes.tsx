@@ -10,6 +10,45 @@ const edgewizeRoute = [
     children: [
       {
         index: true,
+        element: <Edgewize />,
+      },
+      {
+        path: 'clusters/:cluster/nodes/*',
+        exact: true,
+        element: <Edgewize />,
+      },
+      {
+        path: 'clusters/:cluster/edgeippool/*',
+        exact: true,
+        element: <Edgewize />,
+      },
+      {
+        path: 'clusters/:cluster/roles/*',
+        exact: true,
+        element: <Edgewize />,
+      },
+      {
+        path: 'clusters/:cluster/projects/:namespace/:type',
+        element: <EdgewizeLayout />,
+        children: [
+          {
+            index: true,
+            element: <Edgewize />,
+          },
+          {
+            path: '*',
+            element: <Edgewize />,
+          },
+        ],
+      },
+    ],
+  },
+  {
+    path: '/v2/edgewize',
+    element: <EdgewizeLayout />,
+    children: [
+      {
+        index: true,
         path: 'clusters/:cluster/nodes/*',
         exact: true,
         element: <Edgewize />,

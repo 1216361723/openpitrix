@@ -6,6 +6,6 @@ export function editWorkspaceLabels(workspace: string, cluster: string) {
 }
 
 export function getClustersRole(cluster: string) {
-  const url = `/kapis/clusters/${cluster}/iam.kubesphere.io/v1alpha2/clustermembers/admin/clusterroles`;
+  const url = `/kapis/clusters/${cluster}/iam.kubesphere.io/v1beta1/users/${globals.user.username}/roletemplates`;
   return request.get(url);
 }

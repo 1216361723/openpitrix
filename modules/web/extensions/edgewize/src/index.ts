@@ -9,7 +9,7 @@ const menu = {
   order: 0,
   desc: 'EDGEWIZE_COMPUTING',
   ksModule: 'edgewize',
-  authKey: 'global-edge-cluster-management',
+  authKey: 'edge-clusters',
   authAction: 'view',
 };
 
