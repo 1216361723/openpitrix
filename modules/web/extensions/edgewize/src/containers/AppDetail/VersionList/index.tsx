@@ -1,6 +1,12 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { CreateApp, VersionList, AppsDeploySpaceModal, openpitrixStore } from '@ks-console/shared';
+import {
+  CreateApp,
+  VersionList,
+  AppsDeploySpaceModal,
+  openpitrixStore,
+  getCreateAppParams,
+} from '@ks-console/shared';
 
 const { updateVersion } = openpitrixStore;
 
@@ -31,19 +37,27 @@ export function NewVersionList() {
 
   async function handleCreate(data: any) {
     setRefresh(false);
-    data.maintainers = [{ name: globals.user.username }];
-    await updateVersion({ workspace: params.workspace, appName: appName }, data);
+    await updateVersion(
+      { workspace: params.workspace, appName: appName },
+      getCreateAppParams(data),
+    );
     setRefresh(true);
   }
   function handleDeploy(data: any) {
     setSelectRow(data);
     setDeployVisible(true);
   }
+  const actionKey = {
+    appKey: 'edge-app-templates',
+    create: 'workspace-manage-edge-app-templates',
+    delete: 'workspace-manage-edge-app-templates',
+  };
 
   return (
     <>
       <VersionList
         refresh={refresh}
+        actionKey={actionKey}
         onAddVersion={data => {
           if (!params.workspace) {
             setParams({

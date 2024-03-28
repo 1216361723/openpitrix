@@ -26,7 +26,7 @@ const { useAppDetail, handleApp, useCategoryList, HANDLE_TYPE_TO_SHOW } = openpi
 export function AppDetailPage(): JSX.Element {
   const locations = useLocation();
   const { appName = '', workspace } = useParams();
-  const url = workspace ? `/workspaces/${workspace}/edge-templates` : '/apps-manage/store';
+  const url = workspace ? `/workspaces/${workspace}/edge-app-templates` : '/apps-manage/store';
   const PATH = `${url}/:appName`;
   const defaultTabs = [
     {
@@ -80,6 +80,7 @@ export function AppDetailPage(): JSX.Element {
     const action = [
       {
         key: 'edit',
+        action: 'workspace-manage-edge-app-templates',
         type: 'edit',
         icon: 'edit',
         text: t('EDIT'),
@@ -94,6 +95,7 @@ export function AppDetailPage(): JSX.Element {
     if (details?.status?.state === 'active' && !workspace) {
       action.push({
         key: 'suspend',
+        action: 'manage',
         type: 'control',
         icon: 'sort-descending',
         text: t('APP_SUSPEND'),
@@ -105,6 +107,7 @@ export function AppDetailPage(): JSX.Element {
     } else if (['draft', 'suspended'].includes(details?.status?.state) && !workspace) {
       action.push({
         key: 'recover',
+        action: 'manage',
         type: 'control',
         icon: 'sort-ascending',
         text: t('APP_LISTING'),

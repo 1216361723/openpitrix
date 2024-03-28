@@ -16,7 +16,7 @@ export default [
         element: <WorkspaceListLayout />,
         children: [
           {
-            path: 'edge-templates',
+            path: 'edge-app-templates',
             element: <StoreManage />,
           },
           {
@@ -25,7 +25,7 @@ export default [
           },
         ],
       },
-      ...AppDetails('/workspaces/:workspace/edge-templates'),
+      ...AppDetails('/workspaces/:workspace/edge-app-templates'),
     ],
   },
 ];

@@ -96,7 +96,7 @@ export function StoreManage(): JSX.Element {
   const [delVisible, setDelVisible] = useState(false);
   const [editVisible, setEditVisible] = useState(false);
 
-  const authKey = getAuthKey(workspace && 'app-templates');
+  const authKey = getAuthKey(workspace && 'edge-app-templates');
   useEffect(() => {
     // TODO 临时fix列表被压缩问题，默认隐藏2个字段
     if (!localStorage.getItem('tableState:APP')) {
@@ -124,7 +124,7 @@ export function StoreManage(): JSX.Element {
         key: 'edit',
         icon: <Pen />,
         text: t('EDIT'),
-        action: 'edit',
+        action: 'workspace-manage-edge-app-templates',
         onClick: (_, app) => {
           setSelectedApp(app);
           setEditVisible(true);
@@ -134,7 +134,7 @@ export function StoreManage(): JSX.Element {
         key: 'delete',
         icon: <Icon name="trash" />,
         text: t('DELETE'),
-        action: 'delete',
+        action: 'workspace-manage-edge-app-templates',
         onClick: (_, record) => {
           setDelVisible(true);
           setSelectedApp(record);
@@ -243,7 +243,7 @@ export function StoreManage(): JSX.Element {
       {
         key: 'create',
         text: t('CREATE'),
-        action: 'create',
+        action: 'workspace-manage-edge-app-templates',
         disabled: !cluster,
         onClick: () => handleOpen(),
         props: {

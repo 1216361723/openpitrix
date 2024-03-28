@@ -22,7 +22,7 @@ const workspaceAppManageMenu = {
   desc: 'EDGEWIZE_PROJECT_SETTING',
   children: [
     {
-      name: 'edge-templates',
+      name: 'edge-app-templates',
       title: 'EDGEWIZE_TEMPLATE',
       icon: 'appcenter',
       order: 0,

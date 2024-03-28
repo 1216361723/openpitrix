@@ -9,6 +9,7 @@ import {
   workspaceStore,
   clusterStore,
   Panel,
+  hasPermission,
 } from '@ks-console/shared';
 import ClusterCard from './Card';
 import BindClusterModal from '../BindCluster';
@@ -19,7 +20,11 @@ const { useFetchWorkspaceQuery } = workspaceStore;
 const { useQueryWorkspaceClusters } = clusterStore;
 function Clusters() {
   const { workspace = '' } = useParams<{ workspace: string }>();
-
+  const enabledActions = hasPermission({
+    module: 'edge-workspaces',
+    workspace,
+    action: 'manage',
+  });
   const { data: clusters, isLoading } = useQueryWorkspaceClusters(workspace);
 
   const edgeClusters = clusters?.filter(
@@ -72,9 +77,11 @@ function Clusters() {
     <>
       <Panel loading={isLoading} title={t('EDGEWIZE_CLUSTER_INFO')}>
         <div>
-          <Button disabled={isEdgewize} color="secondary" onClick={() => setVisible(true)}>
-            {t('EDGEWIZE_CLUSTER_SETTING')}
-          </Button>
+          {enabledActions && (
+            <Button disabled={isEdgewize} color="secondary" onClick={() => setVisible(true)}>
+              {t('EDGEWIZE_CLUSTER_SETTING')}
+            </Button>
+          )}
         </div>
         {edgeClusters?.map((cluster: FormattedCluster) => (
           <ClusterCard key={cluster.name} cluster={cluster} />
