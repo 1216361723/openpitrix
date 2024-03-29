@@ -8,6 +8,7 @@ import {
   Image,
   LabelText,
   getAnnotationsDescription,
+  getDisplayName,
 } from '@ks-console/shared';
 
 import BaseInfo from './BaseInfo';
@@ -40,7 +41,7 @@ function InfoDetail({ detail, versionName }: Props): JSX.Element {
         }
         value={
           <BaseInfo
-            name={detail.metadata.name}
+            name={getDisplayName(detail)}
             home={detail.spec.appHome}
             isv={detail.metadata.labels?.['kubesphere.io/workspace']}
             versionName={versionName}
