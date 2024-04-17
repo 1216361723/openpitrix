@@ -9,8 +9,8 @@ const menu = {
   order: 0,
   desc: 'EDGEWIZE_COMPUTING',
   ksModule: 'edgewize',
-  authKey: 'edge-clusters',
-  authAction: 'view',
+  authKey: 'global-edge-cluster-management',
+  authAction: 'manage',
 };
 
 const workspaceAppManageMenu = {
